@@ -1,0 +1,993 @@
+/* ============================================================
+ * Apple-inspired Design System — AI 智能体课程平台
+ * ============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --apple-bg: #ffffff;
+    --apple-bg-alt: #f5f5f7;
+    --apple-bg-dark: #000000;
+    --apple-text: #1d1d1f;
+    --apple-text-secondary: #86868b;
+    --apple-text-tertiary: #6e6e73;
+    --apple-blue: #0071e3;
+    --apple-blue-hover: #0077ed;
+    --apple-link: #2997ff;
+    --apple-border: #d2d2d7;
+    --apple-nav-h: 44px;
+    --apple-max: 980px;
+    --apple-wide: 1200px;
+    --apple-radius: 18px;
+    --apple-radius-lg: 28px;
+    --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+        "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    /* legacy aliases */
+    --primary: var(--apple-blue);
+    --bg: var(--apple-bg-alt);
+    --white: #fff;
+    --text: var(--apple-text);
+    --text-sub: var(--apple-text-secondary);
+    --border: var(--apple-border);
+}
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+    font-family: var(--apple-font);
+    background: var(--apple-bg);
+    color: var(--apple-text);
+    line-height: 1.47059;
+    font-size: 17px;
+    letter-spacing: -0.022em;
+}
+
+a { color: var(--apple-blue); text-decoration: none; transition: color 0.3s var(--apple-ease); }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+
+main { min-height: 60vh; }
+
+/* Element Plus → Apple 风格 */
+.el-button--primary {
+    --el-button-bg-color: var(--apple-blue) !important;
+    --el-button-border-color: var(--apple-blue) !important;
+    --el-button-hover-bg-color: var(--apple-blue-hover) !important;
+    --el-button-hover-border-color: var(--apple-blue-hover) !important;
+    border-radius: 980px !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+}
+.el-button { border-radius: 980px !important; font-weight: 400 !important; }
+.el-pagination.is-background .el-pager li.is-active { background-color: var(--apple-blue) !important; }
+
+/* ===== 布局 ===== */
+.container { max-width: var(--apple-wide); margin: 0 auto; padding: 0 22px; }
+.section { padding: 80px 0; }
+.section--alt { background: var(--apple-bg-alt); }
+.section--dark { background: var(--apple-bg-dark); color: #f5f5f7; }
+
+/* Apple 大标题区块 */
+.apple-headline { text-align: center; margin-bottom: 56px; }
+.apple-headline h2 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    line-height: 1.08349;
+    color: var(--apple-text);
+}
+.apple-headline p {
+    margin-top: 6px;
+    font-size: 21px;
+    line-height: 1.381;
+    font-weight: 400;
+    color: var(--apple-text-secondary);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.section--dark .apple-headline h2 { color: #f5f5f7; }
+.section--dark .apple-headline p { color: #a1a1a6; }
+
+.apple-eyebrow {
+    font-size: 17px;
+    line-height: 1.23536;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    color: var(--apple-text-secondary);
+    margin-bottom: 4px;
+}
+
+/* Apple 按钮 */
+.apple-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+.apple-btn,
+.apple-link {
+    cursor: pointer;
+    user-select: none;
+}
+.apple-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    padding: 11px 22px;
+    border-radius: 980px;
+    font-size: 17px;
+    line-height: 1.17648;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    transition: all 0.3s var(--apple-ease);
+    border: none;
+    text-decoration: none !important;
+}
+.apple-btn--primary { background: var(--apple-blue); color: #fff; }
+.apple-btn--primary:hover { background: var(--apple-blue-hover); }
+.apple-btn--dark { background: #1d1d1f; color: #fff; }
+.apple-btn--dark:hover { background: #333; }
+.apple-btn--ghost {
+    background: transparent;
+    color: var(--apple-blue);
+    box-shadow: inset 0 0 0 1px var(--apple-blue);
+}
+.apple-btn--ghost:hover { background: rgba(0, 113, 227, 0.04); }
+.apple-link {
+    font-size: 17px;
+    color: var(--apple-blue);
+    cursor: pointer;
+}
+.apple-link:hover { text-decoration: underline; }
+.apple-link::after { content: " ›"; }
+
+/* ===== 导航（毛玻璃） ===== */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    height: var(--apple-nav-h);
+    background: rgba(251, 251, 253, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transition: background 0.3s var(--apple-ease);
+}
+.nav-scrolled { background: rgba(251, 251, 253, 0.92); }
+
+.nav-inner {
+    max-width: var(--apple-wide);
+    margin: 0 auto;
+    padding: 0 22px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--apple-text);
+    text-decoration: none !important;
+}
+.nav-logo:hover { color: var(--apple-text); }
+.nav-logo-icon {
+    font-size: 18px;
+    opacity: 0.85;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+}
+.nav-menu a {
+    display: block;
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: var(--apple-nav-h);
+    color: var(--apple-text);
+    opacity: 0.88;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-decoration: none !important;
+    transition: opacity 0.3s;
+}
+.nav-menu a:hover { opacity: 1; text-decoration: none !important; }
+.nav-menu a.active { opacity: 1; }
+
+.nav-cta {
+    font-size: 12px !important;
+    padding: 0 12px !important;
+    background: var(--apple-blue) !important;
+    color: #fff !important;
+    border-radius: 980px !important;
+    line-height: 26px !important;
+    margin-left: 8px;
+    opacity: 1 !important;
+}
+.nav-cta:hover { background: var(--apple-blue-hover) !important; }
+
+.nav-toggle {
+    display: none;
+    background: none;
+    font-size: 20px;
+    color: var(--apple-text);
+    padding: 4px 8px;
+}
+
+/* ===== Hero Banner（Apple 产品页风格） ===== */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    min-height: 580px;
+    overflow: hidden;
+    background: var(--apple-bg-dark);
+    text-align: center;
+}
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.9s var(--apple-ease);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 52px;
+}
+.hero-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+}
+.hero-slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+}
+/* 深色渐变遮罩：压暗蓝色背景图，保证文字与按钮可读 */
+.hero-slide-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.72) 0%,
+        rgba(0, 0, 0, 0.45) 45%,
+        rgba(0, 0, 0, 0.78) 100%
+    );
+    pointer-events: none;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 22px;
+    color: #f5f5f7;
+}
+/* Hero 内按钮：白底深字 + 白描边，避免与蓝色背景混在一起 */
+.hero-content .apple-btn--primary {
+    background: #fff;
+    color: #1d1d1f;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+.hero-content .apple-btn--primary:hover {
+    background: #f5f5f7;
+    color: #000;
+}
+.hero-content .apple-link {
+    color: #fff;
+    font-size: 17px;
+    padding: 11px 22px;
+    border-radius: 980px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+    text-decoration: none !important;
+}
+.hero-content .apple-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+    text-decoration: none !important;
+}
+.hero-content .apple-link::after {
+    content: " ›";
+    color: rgba(255, 255, 255, 0.9);
+}
+.hero-eyebrow {
+    font-size: 19px;
+    line-height: 1.21053;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 4px;
+}
+.hero-cta {
+    margin-top: 24px;
+    gap: 16px;
+}
+.hero-content h1 {
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1.07143;
+    margin-bottom: 8px;
+}
+.hero-content p {
+    font-size: 24px;
+    line-height: 1.33341;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 8px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hero-btn {
+    display: inline-block;
+    font-size: 17px;
+    color: var(--apple-link);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.hero-btn:hover { text-decoration: underline; color: #66b3ff; }
+.hero-btn::after { content: " ›"; }
+
+.hero-dots {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+}
+.hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.hero-dot.active { background: #fff; transform: scale(1.15); }
+
+/* ===== 课程卡片（产品卡） ===== */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+}
+.course-card {
+    background: var(--apple-bg-alt);
+    border-radius: var(--apple-radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.45s var(--apple-ease), box-shadow 0.45s;
+    display: flex;
+    flex-direction: column;
+}
+.course-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+.course-card-cover {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #e8e8ed;
+}
+.course-card-body { padding: 24px 20px 12px; flex: 1; }
+.course-card-tag {
+    font-size: 12px;
+    color: var(--apple-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+}
+.course-card-title {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--apple-text);
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.course-card-desc {
+    font-size: 14px;
+    color: var(--apple-text-secondary);
+    line-height: 1.42859;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.course-card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px 20px;
+}
+.course-card-meta .price {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--apple-text);
+}
+.course-card-meta .level-tag {
+    font-size: 12px;
+    color: var(--apple-text-secondary);
+    background: rgba(0, 0, 0, 0.04);
+    padding: 4px 10px;
+    border-radius: 980px;
+}
+.course-card-footer {
+    display: none;
+}
+
+/* ===== 特性网格（Apple 功能介绍） ===== */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+.feature-card {
+    background: var(--apple-bg);
+    border-radius: var(--apple-radius-lg);
+    padding: 48px 40px;
+    text-align: center;
+    transition: transform 0.45s var(--apple-ease);
+    cursor: pointer;
+}
+.section--alt .feature-card { background: #fff; }
+.feature-card:hover { transform: scale(1.01); }
+.teacher-card { cursor: default; }
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+.feature-card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    color: var(--apple-text);
+}
+.feature-card p {
+    font-size: 17px;
+    color: var(--apple-text-secondary);
+    line-height: 1.47059;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* ===== 师资 ===== */
+.teacher-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+.teacher-card {
+    background: var(--apple-bg-alt);
+    border-radius: var(--apple-radius-lg);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.45s var(--apple-ease);
+}
+.teacher-card:hover { transform: scale(1.02); }
+.teacher-avatar {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    background: #e8e8ed;
+}
+.teacher-info { padding: 28px 24px 32px; }
+.teacher-name {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+}
+.teacher-position {
+    font-size: 14px;
+    color: var(--apple-text-secondary);
+    margin-bottom: 8px;
+}
+.teacher-experience {
+    font-size: 12px;
+    color: var(--apple-text-tertiary);
+    margin-bottom: 12px;
+}
+.teacher-specialty {
+    font-size: 14px;
+    color: var(--apple-text-secondary);
+    line-height: 1.5;
+}
+
+/* ===== 评价 ===== */
+.review-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+}
+.review-card {
+    background: #fff;
+    border-radius: var(--apple-radius);
+    padding: 32px 28px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+.section--alt .review-card { background: #fff; }
+.review-content {
+    font-size: 17px;
+    line-height: 1.47059;
+    color: var(--apple-text);
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+.review-meta { display: flex; align-items: center; gap: 12px; }
+.review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e8e8ed;
+}
+.review-name { font-size: 14px; font-weight: 600; }
+.review-course { font-size: 12px; color: var(--apple-text-secondary); }
+.review-stars { margin-left: auto; color: #ff9500; font-size: 13px; }
+
+/* ===== 课程详情 ===== */
+.course-detail { background: #fff; }
+.course-detail-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding: 64px 48px;
+    align-items: center;
+    background: var(--apple-bg-alt);
+    border-radius: var(--apple-radius-lg);
+    margin-bottom: 48px;
+}
+.course-detail-cover {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: var(--apple-radius);
+    background: #e8e8ed;
+}
+.course-detail-info h1 {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+.course-detail-info > p {
+    font-size: 17px;
+    color: var(--apple-text-secondary);
+    line-height: 1.5;
+}
+.course-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0;
+}
+.meta-item {
+    font-size: 12px;
+    color: var(--apple-text-secondary);
+    background: rgba(0, 0, 0, 0.04);
+    padding: 6px 14px;
+    border-radius: 980px;
+}
+.course-detail-price {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 16px 0;
+}
+.course-detail-price small { font-size: 17px; font-weight: 400; }
+.course-detail-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.course-detail-body {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 48px;
+    padding: 0 0 64px;
+}
+.course-section { margin-bottom: 48px; }
+.course-section h2 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    border: none;
+    padding: 0;
+}
+.course-section li {
+    padding: 8px 0;
+    color: var(--apple-text-secondary);
+    font-size: 17px;
+    list-style: none;
+    padding-left: 0;
+}
+.course-section li::before { content: "· "; color: var(--apple-blue); font-weight: bold; }
+.outline-chapter {
+    background: var(--apple-bg-alt);
+    border-radius: var(--apple-radius);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    border: none;
+}
+.outline-chapter h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.outline-chapter li { font-size: 14px; padding: 4px 0; }
+.outline-chapter li::before { content: ""; }
+
+.aside-card {
+    background: var(--apple-bg-alt);
+    border-radius: var(--apple-radius-lg);
+    padding: 32px;
+    position: sticky;
+    top: 60px;
+}
+.aside-card h3 {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* ===== 表单 ===== */
+.form-card {
+    background: #fff;
+    border-radius: var(--apple-radius-lg);
+    padding: 48px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+.consult-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; max-width: 1100px; margin: 0 auto; }
+
+/* ===== AI 客服 ===== */
+.chat-fab {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--apple-blue);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 113, 227, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    z-index: 99;
+    transition: transform 0.3s var(--apple-ease);
+}
+.chat-fab:hover { transform: scale(1.06); }
+.chat-fab::after { display: none; }
+
+.chat-modal {
+    position: fixed;
+    right: 22px;
+    bottom: 86px;
+    width: 380px;
+    max-height: 72vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: var(--apple-radius-lg);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.chat-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--apple-border);
+    background: transparent;
+    color: var(--apple-text);
+}
+.chat-header-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--apple-bg-alt);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chat-header-title { font-weight: 600; font-size: 15px; }
+.chat-header-sub { font-size: 12px; color: var(--apple-text-secondary); }
+.chat-close {
+    background: var(--apple-bg-alt);
+    color: var(--apple-text-secondary);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chat-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.chat-msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+.chat-msg.bot {
+    background: var(--apple-bg-alt);
+    color: var(--apple-text);
+    align-self: flex-start;
+}
+.chat-msg.user {
+    background: var(--apple-blue);
+    color: #fff;
+    align-self: flex-end;
+}
+.chat-quick-btn {
+    background: var(--apple-bg-alt);
+    border: none;
+    color: var(--apple-text);
+    padding: 6px 14px;
+    border-radius: 980px;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+.chat-quick-btn:hover { background: #e8e8ed; }
+.chat-input-bar {
+    padding: 12px 16px;
+    border-top: 1px solid var(--apple-border);
+    display: flex;
+    gap: 8px;
+}
+.chat-input {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1px solid var(--apple-border);
+    border-radius: 980px;
+    font-size: 14px;
+    background: #fff;
+}
+.chat-input:focus { outline: none; border-color: var(--apple-blue); }
+.chat-send {
+    padding: 10px 18px;
+    background: var(--apple-blue);
+    color: #fff;
+    border-radius: 980px;
+    font-size: 14px;
+}
+.chat-send:disabled { opacity: 0.4; }
+
+/* ===== 关于我们 ===== */
+.about-hero {
+    background: var(--apple-bg-dark);
+    color: #f5f5f7;
+    padding: 100px 22px 80px;
+    text-align: center;
+}
+.about-hero h1 {
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1.07143;
+    margin-bottom: 8px;
+}
+.about-hero p {
+    font-size: 24px;
+    color: #a1a1a6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.about-section {
+    background: var(--apple-bg-alt);
+    border-radius: var(--apple-radius-lg);
+    padding: 40px;
+    margin-bottom: 16px;
+}
+.about-section h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    border: none;
+    padding: 0;
+}
+.about-section p {
+    font-size: 17px;
+    color: var(--apple-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+.about-list li {
+    padding: 8px 0;
+    font-size: 17px;
+    color: var(--apple-text-secondary);
+    list-style: none;
+}
+.about-list li::before { content: "· "; color: var(--apple-blue); }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.contact-item {
+    background: #fff;
+    padding: 28px;
+    border-radius: var(--apple-radius);
+    text-align: center;
+}
+.contact-icon { font-size: 28px; margin-bottom: 8px; }
+.contact-label { font-size: 12px; color: var(--apple-text-secondary); }
+.contact-value { font-size: 17px; font-weight: 600; margin-top: 4px; }
+
+/* ===== 页脚（Apple 风格） ===== */
+.footer {
+    background: var(--apple-bg-alt);
+    color: var(--apple-text-secondary);
+    padding: 24px 22px 20px;
+    margin-top: 0;
+    font-size: 12px;
+    line-height: 1.33337;
+    border-top: 1px solid var(--apple-border);
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 24px;
+    max-width: var(--apple-wide);
+    margin: 0 auto 20px;
+}
+.footer-col h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-text);
+    margin-bottom: 10px;
+}
+.footer-col p, .footer-col li {
+    font-size: 12px;
+    color: var(--apple-text-secondary);
+    line-height: 1.8;
+    list-style: none;
+}
+.footer-col a {
+    color: var(--apple-text-secondary);
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.footer-col a:hover { color: var(--apple-blue); text-decoration: underline; }
+.nav-logo, .nav-menu a { cursor: pointer; }
+.footer-bottom {
+    max-width: var(--apple-wide);
+    margin: 0 auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--apple-border);
+    font-size: 12px;
+    color: var(--apple-text-tertiary);
+}
+
+/* ===== 筛选栏 ===== */
+.filter-bar {
+    background: var(--apple-bg-alt);
+    padding: 24px 28px;
+    border-radius: var(--apple-radius-lg);
+    margin-bottom: 32px;
+}
+.filter-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.filter-label { font-size: 14px; color: var(--apple-text-secondary); margin-right: 4px; }
+.filter-chip {
+    padding: 6px 16px;
+    border-radius: 980px;
+    font-size: 14px;
+    color: var(--apple-text);
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: 1px solid transparent;
+}
+.filter-chip:hover { background: #e8e8ed; }
+.filter-chip.active {
+    background: var(--apple-text);
+    color: #fff;
+}
+.search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 16px;
+    border: 1px solid var(--apple-border);
+    border-radius: 980px;
+    font-size: 14px;
+    background: #fff;
+}
+.search-input:focus { outline: none; border-color: var(--apple-blue); }
+
+/* ===== 空状态 / 促销条 ===== */
+.empty { text-align: center; padding: 80px 22px; color: var(--apple-text-secondary); }
+.empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+
+.apple-promo {
+    text-align: center;
+    padding: 80px 22px;
+    background: var(--apple-bg-dark);
+    color: #f5f5f7;
+}
+.apple-promo h2 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    line-height: 1.08349;
+    margin-bottom: 8px;
+}
+.apple-promo p {
+    font-size: 21px;
+    color: #a1a1a6;
+    margin-bottom: 24px;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1068px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .course-detail-hero { grid-template-columns: 1fr; padding: 40px 28px; }
+    .course-detail-body { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .consult-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 734px) {
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: var(--apple-nav-h);
+        left: 0;
+        right: 0;
+        background: rgba(251, 251, 253, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--apple-border);
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu a { line-height: 44px; font-size: 17px; padding: 0 22px; }
+    .nav-toggle { display: block; }
+    .hero-banner { min-height: 480px; }
+    .hero-content h1 { font-size: 40px; }
+    .hero-content p { font-size: 19px; }
+    .apple-headline h2 { font-size: 32px; }
+    .apple-headline p { font-size: 17px; }
+    .section { padding: 56px 0; }
+    .course-grid { grid-template-columns: 1fr; }
+    .chat-modal { right: 12px; left: 12px; width: auto; }
+    .about-hero h1 { font-size: 40px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .apple-promo h2 { font-size: 32px; }
+}

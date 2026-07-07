@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能体 - 基础介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+        /* 导航栏 */
+        nav {
+            background: #2b6cb0;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .nav-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 16px;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        /* 容器通用 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+        /* 头部横幅 */
+        .banner {
+            background: linear-gradient(135deg, #3182ce, #667292);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        .banner h1 {
+            font-size: 42px;
+            margin-bottom: 1rem;
+        }
+        .banner p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        /* 板块样式 */
+        section {
+            margin-bottom: 4rem;
+        }
+        section h2 {
+            font-size: 28px;
+            color: #2c5282;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #3182ce;
+            padding-left: 12px;
+        }
+        .card-wrap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+        }
+        .card h3 {
+            color: #2b6cb0;
+            margin-bottom: 0.8rem;
+            font-size: 20px;
+        }
+        /* 列表 */
+        ul {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        li {
+            margin: 0.6rem 0;
+        }
+        /* 底部 */
+        footer {
+            background: #2d3748;
+            color: #cbd5e0;
+            text-align: center;
+            padding: 2rem;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav>
+        <div class="nav-wrap">
+            <div class="logo">AI智能体科普</div>
+            <div class="nav-links">
+                <a href="#define">什么是智能体</a>
+                <a href="#type">智能体分类</a>
+                <a href="#scene">应用场景</a>
+                <a href="#advantage">核心优势</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <div class="banner">
+        <h1>AI 智能体 基础介绍</h1>
+        <p>自主感知、思考、执行任务的人工智能单元，新一代自动化、智能化技术核心</p>
+    </div>
+
+    <div class="container">
+        <!-- 一、智能体定义 -->
+        <section id="define">
+            <h2>一、什么是AI智能体</h2>
+            <p>
+                AI智能体（AI Agent）是具备独立感知、推理、规划、行动能力的人工智能实体。它可以接收外部信息、自主分析目标、拆分复杂任务、调用工具完成工作，不再局限于单一问答。
+            </p>
+            <p style="margin-top:1rem;">
+                简单来说：传统大模型只能被动回答问题；智能体可以主动思考“该做什么、怎么做”，自主完成一整套完整流程。
+            </p>
+            <div class="card-wrap">
+                <div class="card">
+                    <h3>感知模块</h3>
+                    <p>读取文本、文件、网页、数据库、用户指令等外部信息，获取任务上下文</p>
+                </div>
+                <div class="card">
+                    <h3>思考规划</h3>
+                    <p>拆解复杂目标，分步制定执行计划，自主判断下一步操作</p>
+                </div>
+                <div class="card">
+                    <h3>工具调用</h3>
+                    <p>联网搜索、代码运行、表格处理、接口调用、文件读写等外部能力</p>
+                </div>
+                <div class="card">
+                    <h3>反馈迭代</h3>
+                    <p>根据执行结果修正方案，循环优化直至完成目标</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 二、智能体分类 -->
+        <section id="type">
+            <h2>二、智能体常见分类</h2>
+            <ul>
+                <li><strong>单任务专用智能体</strong>：只负责单一功能，如文档总结、数据爬虫、客服回复</li>
+                <li><strong>通用多任务智能体</strong>：可处理跨领域复杂任务，自主切换工具与工作流程</li>
+                <li><strong>多智能体协作系统</strong>：多个专业智能体分工配合，共同完成大型复杂项目（研究、数据分析、自动化运维）</li>
+                <li><strong>嵌入式终端智能体</strong>：运行在本地设备，无需云端，隐私性更强</li>
+            </ul>
+        </section>
+
+        <!-- 三、应用场景 -->
+        <section id="scene">
+            <h2>三、主流应用场景</h2>
+            <div class="card-wrap">
+                <div class="card">
+                    <h3>企业办公自动化</h3>
+                    <p>自动整理报表、邮件处理、会议纪要生成、流程审批</p>
+                </div>
+                <div class="card">
+                    <h3>智能客服机器人</h3>
+                    <p>自主查询订单、解决售后问题、主动推送通知</p>
+                </div>
+                <div class="card">
+                    <h3>科研数据分析</h3>
+                    <p>文献检索、数据清洗、图表生成、实验结果总结</p>
+                </div>
+                <div class="card">
+                    <h3>软件开发助手</h3>
+                    <p>需求拆解、代码编写、BUG排查、接口自动化测试</p>
+                </div>
+                <div class="card">
+                    <h3>个人效率助手</h3>
+                    <p>日程规划、资料整理、学习备课、内容创作</p>
+                </div>
+                <div class="card">
+                    <h3>RAG知识库智能体</h3>
+                    <p>私有文档问答、企业内部知识库检索</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 四、核心优势 -->
+        <section id="advantage">
+            <h2>四、AI智能体核心优势</h2>
+            <ul>
+                <li>自主执行复杂长流程，无需人工分步引导</li>
+                <li>支持工具联动，突破纯文本大模型能力限制</li>
+                <li>可7×24小时不间断运行，大幅降低重复人力成本</li>
+                <li>多智能体协同可处理大型综合性业务</li>
+                <li>支持私有化部署，保障企业数据安全</li>
+                <li>低代码搭建，普通业务人员也可快速创建专属智能体</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        AI智能体科普介绍网页 | 2026 基础技术科普页面
+    </footer>
+
+    <!-- Coze 智能体聊天弹窗SDK -->
+    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
+    <script>
+      new CozeWebSDK.WebChatClient({
+        config: {
+          bot_id: '7644412189956685870',
+        },
+        componentProps: {
+          title: 'Coze智能体助手',
+        },
+        auth: {
+          type: 'token',
+          token: 'pat_SbRF2NVDQYjPkqxpr55yb4MFjrkjEryNGyUbanfrUlgRdyjZuVhsWw9bsHskSL7k',
+          onRefreshToken: function () {
+            // 此处替换为你的有效token
+            return 'pat_SbRF2NVDQYjPkqxpr55yb4MFjrkjEryNGyUbanfrUlgRdyjZuVhsWw9bsHskSL7k'
+          }
+        }
+      });
+    </script>
+</body>
+</html>

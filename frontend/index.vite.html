@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 智能体课程咨询平台</title>
+    <meta name="description" content="专业的 AI 智能体课程学习与咨询平台">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="app">
+        <nav-bar></nav-bar>
+        <main><router-view></router-view></main>
+        <app-footer></app-footer>
+        <ai-chat></ai-chat>
+    </div>
+    <!-- module 先加载 Vue；defer 脚本在其后按序执行，避免白屏 -->
+    <script type="module" src="entries/install-globals.js"></script>
+    <script defer src="js/api.js"></script>
+    <script defer src="js/utils/lazyLoad.js"></script>
+    <script defer src="js/components/NavBar.js"></script>
+    <script defer src="js/components/Footer.js"></script>
+    <script defer src="js/components/CourseCard.js"></script>
+    <script defer src="js/components/TeacherCard.js"></script>
+    <script defer src="js/components/BannerCarousel.js"></script>
+    <script defer src="js/components/AiChat.js"></script>
+    <script defer src="js/pages/Home.js"></script>
+    <script defer src="js/pages/CourseList.js"></script>
+    <script defer src="js/pages/CourseDetail.js"></script>
+    <script defer src="js/pages/Consult.js"></script>
+    <script defer src="js/pages/About.js"></script>
+    <script defer src="js/app.js"></script>
+</body>
+</html>
