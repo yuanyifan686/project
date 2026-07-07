@@ -26,9 +26,20 @@ if (existsSync(finalIndex)) {
         /<script(?![^>]*\btype=["']module["'])(?![^>]*\bdefer\b)([^>]*src=)/g,
         '<script defer$1'
     );
-    if (!html.includes('href="css/main.css"')) {
-        html = html.replace('</head>', '  <link rel="stylesheet" href="css/main.css">\n</head>');
+    if (!html.includes('href="/css/main.css"') && !html.includes('href="css/main.css"')) {
+        html = html.replace('</head>', '  <link rel="stylesheet" href="/css/main.css">\n</head>');
     }
+    if (!html.includes('router.js')) {
+        html = html.replace(
+            '<script defer src="js/api.js"></script>',
+            '<script defer src="/js/api.js"></script>\n    <script defer src="/js/router.js"></script>'
+        );
+    }
+    html = html
+        .replace(/href="css\//g, 'href="/css/')
+        .replace(/src="js\//g, 'src="/js/')
+        .replace(/src="\.\/assets\//g, 'src="/assets/')
+        .replace(/href="\.\/assets\//g, 'href="/assets/');
     writeFileSync(finalIndex, html, 'utf8');
 }
 

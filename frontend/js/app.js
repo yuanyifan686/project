@@ -74,4 +74,5 @@
     app.config.globalProperties.$confirm = ElMessageBox.confirm;
     app.config.globalProperties.$go = (path) => window.Router.navigate(path);
     app.mount('#app');
+    window.__vue_app__ = true;
 })();

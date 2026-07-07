@@ -9,7 +9,10 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/health
+    # 根目录为仓库根；前后端一体，勿改 Root Directory
     envVars:
+      - key: USE_DIST
+        value: "false"
       - key: PYTHON_VERSION
         value: "3.11.9"
       - key: HOST

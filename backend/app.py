@@ -21,13 +21,14 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from sqlalchemy.orm import Session
 
-# 修复 Windows 控制台 emoji 编码
+# 修复 Windows 控制台 emoji 编码（避免替换 stdout 导致 uvicorn 崩溃）
 if sys.platform == "win32":
-    try:
-        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
-    except Exception:
-        pass
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            try:
+                _stream.reconfigure(encoding="utf-8")
+            except Exception:
+                pass
 
 # 把项目根目录加入 sys.path，兼容直接 `python backend/app.py` 启动
 BASE_DIR = Path(__file__).resolve().parent
@@ -542,11 +543,17 @@ FRONTEND_DIR = (
     else PROJECT_ROOT / "frontend"
 )
 if FRONTEND_DIR.is_dir():
+    print(
+        f"[INFO] 静态资源目录: {FRONTEND_DIR.resolve()} "
+        f"(USE_DIST={_use_dist})"
+    )
     app.mount(
         "/",
         StaticFiles(directory=str(FRONTEND_DIR), html=True),
         name="frontend",
     )
+else:
+    print(f"[WARN] 前端目录不存在: {FRONTEND_DIR.resolve()}")
 
 
 # ===== 入口 =====
